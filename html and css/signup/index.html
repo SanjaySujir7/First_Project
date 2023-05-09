@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title> My new project</title>
+    <meta name="description" content="this is the new project">
+    <meta name="author" content="Sanjay">
+</head>
+<body>
+    <main>
+        <section class="Main">
+            <div class="Main-Div">
+                <div class="Sub-Div">
+                    <header>
+                        <h1>Sign Up</h1>
+                    </header>
+                </div>
+                <form >
+                    <div class="User-Name">
+                        <label for="username">User Name :</label>
+                        <input type="text" placeholder="User Name" id="username" required>   
+                    </div>                
+                    <div class="General-Input">
+                        <label for="lastname">Last Name :</label>
+                        <input type="text" placeholder="Last Name" id="lastname" class="Input" required>   
+                    </div>           
+                    <div class="General-Input">
+                        <label for="email">Email :</label>
+                        <input type="text" placeholder="Email" id="email" required>   
+                    </div>  
+                    <div class="General-Input">
+                        <label for="password">Password :</label>
+                        <input type="password" placeholder="Password" id="password" required>   
+                    </div> 
+                </form>
+                <div class="Drop-Down">
+                    <select name="Programming Languages" class="Programming-Language" id="Language">
+                        <option value="Select" >
+                            Select
+                        </option>
+                        <option value="python">
+                            Python
+                        </option>
+                        <option>Java Script</option>
+                        <option>Java</option>
+                        <option >C++</option>
+                        <option>C</option>
+                        <option>C#</option>
+                        <option>R</option>
+                        <option>Ruby</option>
+                        <option>Php</option>
+                        <option>Swift</option>
+                        <option>Kotlin</option>
+                        <option>Type Script</option>
+                    </select>
+                    <select name="Course" class="Programming-Language" id="Status">
+                        <option value="Select">Select</option>
+                        <option value="student">Student / Beginer</option>
+                        <option value="WebDevelopment">Working Profession</option>
+                    </select>
+                </div> 
+                <div class="Check-Box">
+                    <p>What Topics are you intrested in ?</p>
+                    <input type="radio" name="topic" class="Radio" value="App-development">
+                    <p class="Subject-Checkbox">App Development</p>
+                    <br>
+                    <input type="radio" name="topic" class="Radion" value="Web-development">
+                    <p class="Subject-Checkbox">Website Development</p>
+                    <br>
+                    <input type="radio" name="topic" class="Radion" value="Machine-learning">
+                    <p class="Subject-Checkbox">Machine Learning</p>
+                    <br>
+                    <input type="radio" name="topic" class="Radion" value="Cyber-security">
+                    <p class="Subject-Checkbox">Cyber Security</p>
+                </div>  
+                <div class="Button-Div">
+                    <Button class="Button" id="Button">Submit</Button>
+                </div>                   
+            </div> 
+           
+        </section>
+    </main>
+    <script src="index.js"></script>
+</body>
+</html>

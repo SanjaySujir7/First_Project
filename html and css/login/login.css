@@ -1,0 +1,104 @@
+body{background: linear-gradient(109.6deg,rgb(177,173,219),11.2% ,rgb(245,226,226) 91.1%);
+    margin: 0;
+    font-family: 'Roboto', sans-serif;
+}
+
+.Main {
+    display: flex;
+    justify-content: center;
+}
+
+.Main-Div{
+    background-color: whitesmoke;
+    margin-top: 40px;
+    padding-left: 40px;
+    padding-right: 40px;
+    padding-bottom: 50px;
+    box-shadow: 1px 1px 30px black;
+}
+
+h1{
+    text-align: center;
+    font-weight: bold;
+    font-size: 50px;
+    color: blue;
+}
+
+.Image-Login{
+    display: flex;
+    justify-content: center;
+    margin-top: 30px;
+}
+
+.Image{
+    height: 100px;
+    width: 100px;
+
+}
+
+.Input{
+    display: flex;
+    justify-content: center;
+    margin-top: 70px;
+    margin-bottom: 0px;
+}
+
+.Input-Username{
+    width: 300px;
+    height: 50px;
+    text-align: center;
+    font-size: larger;
+    font-weight: bold;
+    border-color: gray solid;
+    outline: 0;
+}
+
+.Input-Password{
+    display: flex;
+    justify-content: center;
+    margin-top: 30px;
+
+}
+
+.Button-Div{
+    display: flex;
+    justify-content: center;
+    margin-top: 70px;
+}
+
+.Button {
+    font-size: 20px;
+    background-color: blue;
+    color: white;
+    border: 0;
+    padding-left: 120px;
+    padding-right: 120px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    font-weight: bold;
+
+}
+
+.Button:Hover{
+    background-color: rgb(62, 41, 155);
+    cursor: pointer;
+}
+
+.Button:active{
+    opacity: 0.5;
+}
+
+.Signup-Link{
+    margin-top: 20px;
+    display: block;
+    justify-content: center;
+    align-items: center;
+}
+
+.Link-Word{
+    color: blue;
+}
+
+.Link-Word:active{
+    opacity: 0.5;
+}

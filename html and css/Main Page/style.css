@@ -1,0 +1,82 @@
+body{
+    margin: 0;
+    font-family:'Roboto', sans-serif;
+    background-image: url(Main-Page.jpg);
+}
+
+.Head{
+    display: flex;
+    justify-content: end;
+    padding-bottom: 30px;
+    
+}
+
+.Sign-up-Button{
+    
+    font-size: 20px;
+    font-family: 'Roboto', sans-serif;
+    padding-left: 15px;
+    padding-right: 15px;
+    padding-top: 7px;
+    padding-bottom: 7px;
+    font-weight: bold;
+    border: 3px solid black;
+    background-color: transparent;
+}
+
+.Sign-up-Button-Div{
+    margin-right: 40px;
+    margin-top: 20px;
+}
+
+.Sign-up-Button:hover{
+    cursor: pointer;
+    background-color: rgb(153, 142, 142);
+    color: beige;
+}
+.Sign-up-Button:active{
+    opacity: 0.5;
+}
+
+.Main{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 500px;
+
+
+}
+
+.Profile{
+    background-color: blueviolet;
+    width: 300px;
+    height: 300px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-left: 20px;
+}
+
+h3{
+    color: antiquewhite;
+    font-size: 130px;
+}
+
+h5{
+    font-size: 30px;
+}
+
+.content{
+    display: flex;
+    justify-content: center;
+}
+
+p{
+    font-size: 35px;
+    text-align: center;
+    font-weight: bold;
+
+}
+
+.
