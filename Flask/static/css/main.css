@@ -1,0 +1,181 @@
+body{
+    margin: 0;
+    font-family:'Roboto', sans-serif;
+    background-image: url('/static/img/Main-Page.jpg');
+}
+
+.Head{
+    display: flex;
+    justify-content: end;
+    padding-bottom: 30px;
+    
+}
+
+.Sign-up-Button{
+    
+    font-size: 20px;
+    font-family: 'Roboto', sans-serif;
+    padding-left: 15px;
+    padding-right: 15px;
+    padding-top: 7px;
+    padding-bottom: 7px;
+    font-weight: bold;
+    border: 3px solid black;
+    background-color: transparent;
+}
+
+.Sign-up-Button-Div{
+    margin-right: 40px;
+    margin-top: 20px;
+}
+
+.Sign-up-Button:hover{
+    cursor: pointer;
+    background-color: rgb(153, 142, 142);
+    color: beige;
+}
+.Sign-up-Button:active{
+    opacity: 0.5;
+}
+
+.Main{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 500px;
+
+
+}
+
+.Profile{
+    background-color: blueviolet;
+    width: 300px;
+    height: 300px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-left: 30px;
+}
+
+h3{
+    color: antiquewhite;
+    font-size: 150px;
+}
+
+h5{
+    font-size: 30px;
+}
+
+.content{
+    display: flex;
+    justify-content: center;
+}
+
+p{
+    font-size: 35px;
+    text-align: center;
+    font-weight: bold;
+
+}
+
+#Dialog{
+    height: 500px;
+    padding-left: 30px;
+    padding-right: 30px;
+    border: 0;
+}
+h4{
+    text-align: center;
+    font-size: 30px;
+    margin: 0;
+}
+
+.username{
+    height: 40px;
+    width: 300px;
+    text-align: center;
+    outline: 0;
+    font-weight: bold;
+    font-size: 15px;
+}
+
+#Dialog-Button{
+    margin-top: 30px;
+    background-color: blue;
+    color: beige;
+    padding-left: 50px;
+    padding-right: 50px;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    border: 0;
+}
+
+#Dialog-Cancel-Button{
+    margin-top: 30px;
+    color: black;
+    padding-left: 48px;
+    padding-right: 48px;
+    padding-top: 13px;
+    padding-bottom: 13px;
+    border: 1px solid black;
+    margin-left: 25px;
+}
+
+#Dialog-Button:hover{
+    cursor: pointer;
+    background-color: rgb(60, 60, 192);
+
+}
+
+#Dialog-Button:active{
+    opacity: 0.5;
+}
+
+#Dialog-Cancel-Button:hover{
+    background-color: rgb(214, 203, 203);
+    cursor: pointer;
+}
+
+#Dialog-Cancel-Button:active{
+    opacity: 0.5;
+}
+
+.Programming-Language{
+    width: 310px;
+    height: 43px;
+    text-align: center;
+    color: black;
+    font-weight: bold;
+}
+
+#Delete-Dialog{
+    border: 0;
+    width: 500px;
+    padding-top: 60px;
+    padding-bottom: 30px;
+}
+
+.d-dialog-button{
+    margin-right: 30px;
+    color: black;
+    font-size: 15px;
+    font-weight: bold;
+    padding-top: 7px;
+    padding-bottom: 7px;
+    padding-left: 30px;
+    padding-right: 30px;
+    border: 0;
+    background-color: rgb(84, 71, 204);
+    color: azure;
+
+}
+
+.d-dialog-button:hover{
+    cursor: pointer;
+    
+}
+
+.d-dialog-button:active{
+    opacity: 0.5;
+}

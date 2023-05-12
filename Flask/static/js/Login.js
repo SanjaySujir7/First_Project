@@ -43,7 +43,7 @@ function Process(Data_type) {
     
     else {
 
-        if (Password.value.length > 7 ){
+        if (Password.value.length > 6 ){
             Password.style.borderColor = "gray";
             Password.setCustomValidity("");
             Password_valid = true;

@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Code Probe</title>
+    <link rel="stylesheet" href={{url_for('static',filename='/css/main.css')}}>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="Head" >
+        <div class="Sign-up-Button-Div" id="Sign">
+            <a href="{{url_for('Sign_Up')}}"><button class="Sign-up-Button">
+                Sign Up
+            </button></a>
+        </div>    
+        <div class="Sign-up-Button-Div" id="Log">
+            <a href="{{url_for('Login')}}"><button class="Sign-up-Button">
+                Login
+            </button></a>
+        </div>  
+        <div class="Sign-up-Button-Div" id="Log-out">
+            <a href="{{url_for('Log_out')}}"><button class="Sign-up-Button" >
+                Log out
+            </button></a>
+        </div>           
+    </div>
+    <div class="Main" id="Main">
+        <div class="sub-div">
+            <div class="Profile" id="Profile">
+                <h3 id="SSS">S</h3>
+            </div> 
+        
+            <div class="content" id="content">
+                <p>
+                    {{NaMe}} {{LaSt}}
+                    <br>
+                    {{EmAiL}}
+                    <br>
+                    Language : {{LaNg}}
+                    <br>
+                    Topic : {{ToPiC}}
+                </p>
+            </div> 
+
+            <div class="Sign-up-Button-Div" id="Sign-Div">
+                <form style="display:inline-block ;">
+                    <button class="Sign-up-Button" style="display:inline-block ;" id="Delete-Button">
+                        Delete Account
+                    </button>
+                </form>
+                <form style="display:inline-block ;" id='update_form'>
+                    <button class="Sign-up-Button" style="display:inline-block ;" id='up_but'>
+                        Update Account
+                    </button>
+                </form>
+            </div>
+            <dialog id="Dialog">
+                <h4>Update Account</h4>
+                <form id="Dialog-Form" action='/update' method='post'>
+                    <div style='display:flex; justify-content:center; margin-top : 50px;'>
+                        <input type="text" placeholder="Username" class="username" id="username" name="Name"> 
+                    </div> 
+                    <div style='display:flex; justify-content:center; margin-top : 30px;'>
+                        <input type="text" placeholder="Last Name" class="username" id="lastname" name="Last"> 
+                    </div> 
+                    <div style='display:flex; justify-content:center; margin-top : 30px;'>
+                        <input type="text" placeholder="Email" class="username" id="email" name="Email"> 
+                    </div> 
+                    <div style='display:flex; justify-content:center; margin-top : 30px;'>
+                        <select  class="Programming-Language" id="lang" name= "Lang" name="Lang">
+                            <option value="python">
+                                Python
+                            </option>
+                            <option>Java Script</option>
+                            <option>Java</option>
+                            <option >C++</option>
+                            <option>C</option>
+                            <option>C#</option>
+                            <option>R</option>
+                            <option>Ruby</option>
+                            <option>Php</option>
+                            <option>Swift</option>
+                            <option>Kotlin</option>
+                            <option>Type Script</option>
+                        </select>
+                    </div> 
+                    <div style='display:flex; justify-content:center; margin-top : 30px;'>
+                        <select class="Programming-Language" id="topic" name="Topic">
+                            <option>App-development</option>
+                            <option>Web-development</option>
+                            <option>Machine-learning</option>
+                            <option>Cyber-security</option>
+                        </select>
+                    </div> 
+                    <button id="Dialog-Button" >Update</button>
+                    <button id="Dialog-Cancel-Button" >Cancel</button>
+                </form>
+               
+            </dialog>
+            <dialog id="Delete-Dialog">
+                <h5 style="font-size : 25px; margin: 0 ; margin-top : 0px ; text-align:center;">Do you want to delete this account ?</h5>
+                <p style="font-size : 15px; ">Note : this account will be Deleted permanently.</p>
+                <div style="margin-top : 30px; display:flex; justify-content : end;">
+                    <form action="/delete" method = 'post'>
+                        <button class="d-dialog-button">OK</button>
+                    </form>
+                    
+                    <button class="d-dialog-button" style="border:1px solid black; background:0; color:black;" id="d-cancel">Cancel</Button>
+                </div>
+            </dialog>
+        </div>
+    </div>
+    <script>
+        ac = "{{Account}}";
+
+        if(ac == 'False'){
+            Account = false;
+        }
+        else{
+            Account = true;
+        }
+
+        let Name = '{{NaMe}}',Last = '{{LaSt}}' , Email = '{{EmAiL}}' , Lang = '{{LaNg}}',Topic = '{{ToPiC}}';
+
+
+    </script>
+    <script src={{url_for('static',filename='/js/main.js')}}></script>
+</body>
+</html>
