@@ -7,6 +7,39 @@ import sqlite3
 app = Flask(__name__)
 
 
+@app.route('/admin-log-out',methods = ['POST'])
+def Admin_Log_out():
+    if request.method == 'POST':
+        session.clear()
+        
+        return redirect('/')
+    
+    else:
+        return 404 
+
+@app.route('/admin')
+def Admin_Page ():
+    
+    try:
+        Name = session['Admin_Name']
+        Last = session['Admin_Last']
+        Email = session['Admin_Email']
+        
+        conn = sqlite3.connect('user.db')
+        
+        c = conn.cursor()
+        
+        c.execute("SELECT * FROM user_info")
+        data = c.fetchall()
+        
+        data = len(data)
+
+    
+        return render_template ('admin.html',Name = Name,Last = Last,Email = Email,data = data)
+    
+    except:
+        return redirect('/login')
+        
 @app.route('/delete',methods=['POST'])
 def Delete_Account():
     name = session['Name']
@@ -107,7 +140,6 @@ def Login_Data_Process():
     Password = request.form['password']
     found = False
     
-    print(Name_Email,Password)
     
     if Password and Name_Email:
         if len(Password) > 6 and Name_Email.isdigit() != True:
@@ -119,6 +151,7 @@ def Login_Data_Process():
                 c.execute("SELECT * FROM user_info WHERE Email = ? AND Password =  ?",(Name_Email,Password,))
                 data = c.fetchall()
                 if data:
+                    
                     PASS = data[0][3]
                     NAME = data[0][0]
                     EMAIL = data[0][2]
@@ -140,7 +173,6 @@ def Login_Data_Process():
             else:
                 c.execute("SELECT * FROM user_info WHERE Name = ? AND Password = ?",(Name_Email,Password,))
                 data = c.fetchall()
-                print(data)
                 
                 if data:
                    
@@ -178,14 +210,24 @@ def Login_Data_Process():
             
             
             if found and Pass_Found:
-                session['Name'] = NAME
-                session['Last'] = LAST
-                session['Email'] = EMAIL
-                session['Lang'] = LANG
-                session['Topic'] = TOPIC
-                session['Password'] = PASS
                 
-                return redirect('/')
+                if data[0][7] == 'Normal':
+                    session['Name'] = NAME
+                    session['Last'] = LAST
+                    session['Email'] = EMAIL
+                    session['Lang'] = LANG
+                    session['Topic'] = TOPIC
+                    session['Password'] = PASS
+                    
+                    return redirect('/')
+                
+                else:
+                    session['Admin_Name'] = NAME
+                    session['Admin_Last'] = LAST
+                    session['Admin_Email'] = EMAIL
+                    session['Admin_Password'] = PASS
+                    
+                    return redirect('/admin')
             
             else:
                 return Error("The data is not found ! please check whether you have account or not. \nif you dont have account create one")
@@ -236,12 +278,12 @@ def Get_Data():
             
             c = conn.cursor()
             
-            c.execute("CREATE TABLE IF NOT EXISTS user_info (Name , Last_name , Email , Password , Language , Status , Radio)")
+            c.execute("CREATE TABLE IF NOT EXISTS user_info (Name , Last_name , Email , Password , Language , Status , Radio, Type)")
             
             conn.commit()
             
-            c.execute(""" INSERT INTO user_info (Name , Last_name , Email , Password , Language , Status , Radio) 
-                        VALUES ( :Name , :Last_name , :Email , :Password , :Language , :Status , :Radio)
+            c.execute(""" INSERT INTO user_info (Name , Last_name , Email , Password , Language , Status , Radio, Type) 
+                        VALUES ( :Name , :Last_name , :Email , :Password , :Language , :Status , :Radio , 'Normal')
                         
                         """,{ 'Name' :Name ,'Last_name' :Last_Name, 'Email' :Email, 'Password' :Password, 'Language' : Language, 'Status' :Status, 'Radio' :Radio})
             
