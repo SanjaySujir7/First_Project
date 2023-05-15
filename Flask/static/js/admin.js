@@ -1,6 +1,6 @@
 
-let Import_Button = document.getElementById("Button"),
-Dialog = document.getElementById("Dialog");
+let Edit_Button = document.getElementById("Edit-Button");
+
 
 
 function Create_Div(Name ,Last,Email,Lang,Type,Topic){
@@ -65,6 +65,27 @@ function Create_Div(Name ,Last,Email,Lang,Type,Topic){
     EditDiv.appendChild(h6);
 }
 
-Import_Button.addEventListener("click",function(){
-    Dialog.showModal()
+
+for(let i = 1; i < Total ; i++){
+
+    fetch('/return-data', {
+        method : 'POST',
+        headers : {
+            'Content-Type' : 'application/json'
+        },
+        body : JSON.stringify({"return" : i})
+    })
+    .then(response => response.json())
+    .then(data => {
+    Name = data['Name'];
+    Last = data['Last'];
+    Email = data['Email'];
+    Lang = data['Lang'];
+    Topic = data['Topic'];
+    Type = data['Type'];
+
+    Create_Div(Name,Last,Email,Lang,Type,Topic);
 })
+
+}
+

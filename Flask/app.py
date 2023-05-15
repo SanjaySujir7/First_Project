@@ -1,12 +1,83 @@
 
-from flask import Flask, redirect, render_template,url_for,session
+from flask import Flask, redirect, render_template,jsonify,session
 from flask import request
 import sqlite3
-
+import csv
 
 app = Flask(__name__)
 
 
+@app.route('/import-csv',methods = ['POST'])
+def Import_Csv():
+    
+    filename = request.form("csv_file")
+    print(filename)
+    
+    data = None
+    
+    with open('user.csv','r') as file :
+        read = csv.DictReader(file)
+        
+        for each_user in read:
+            data.append(each_user)
+            
+    conn = sqlite3.connect("user.db")
+    c = conn.cursor()  
+            
+    for user in data:
+        Name = user['Name'].lower()
+        Last = user['Last']
+        Email = user['Email']
+        Password = user['Password']
+        Lang = user['Lang']
+        Status = user['Status']
+        Topic = user['Topic']
+        Type = user['Type']
+        
+        c.execute("SELECT * FROM user_info WHERE Name = ? AND Password = ?",(Name,Password))
+        fetch_data = c.fetchall()
+        
+        if fetch_data :
+            pass
+        
+        else:
+            c.execute("INSERT INTO user_info (Name , Last_name , Email , Password , Language , Status , Radio, Type) VALUES (?,?,?,?,?,?,?,?)",
+                      (Name,Last,Email,Password,Lang,Status,Topic,Type,))
+            
+            conn.commit()
+            
+    conn.close()
+    
+    return redirect('/admin')
+        
+
+@app.route('/return-data',methods = ['POST','GET'])
+def Return_Data ():
+    index = request.get_json()
+    
+    if int(index['return']):
+        conn = sqlite3.connect('user.db')
+        c = conn.cursor()
+    
+        c.execute("SELECT * FROM user_info WHERE Type = 'Normal'")
+        
+        user_data = c.fetchall()
+        
+        c.close()
+    
+    num = int(index['return'])-1
+    
+    data = {
+        'Name' : user_data[num][0],
+        'Last' : user_data[num][1],
+        'Email' : user_data[num][2],
+        'Lang' : user_data[num][4],
+        'Type' : user_data[num][5],
+        'Topic' : user_data[num][6],
+    }
+    
+    return jsonify(data)
+    
 @app.route('/admin-log-out',methods = ['POST'])
 def Admin_Log_out():
     if request.method == 'POST':
@@ -32,7 +103,7 @@ def Admin_Page ():
         c.execute("SELECT * FROM user_info")
         data = c.fetchall()
         
-        data = len(data)
+        data = len(data)-1
 
     
         return render_template ('admin.html',Name = Name,Last = Last,Email = Email,data = data)
@@ -109,7 +180,7 @@ def Update ():
 @app.route('/logout')
 def Log_out ():
     session.clear()
-    return redirect('/')
+    return redirect('/sign-up')
 
 @app.route("/")
 def Main_Page():
@@ -171,6 +242,7 @@ def Login_Data_Process():
                     found = False
                 
             else:
+                Name_Email = Name_Email.lower()
                 c.execute("SELECT * FROM user_info WHERE Name = ? AND Password = ?",(Name_Email,Password,))
                 data = c.fetchall()
                 
@@ -252,7 +324,7 @@ def Sign_Up():
 @app.route('/sign-up-data',methods=['POST'])
 def Get_Data():
     
-    Name = request.form['Name']
+    Name = request.form['Name'].lower()
     Last_Name = request.form['Last']
     Email = request.form['Email']
     Password = request.form['Password']

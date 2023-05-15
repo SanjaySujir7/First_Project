@@ -193,6 +193,7 @@ h6{
     display: grid;
     align-items: center;
     grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
+    margin-left: 30px;
     
 }
 
@@ -255,4 +256,81 @@ h6{
 
 #Search-Button i{
     font-size: 30px;
+}
+
+#User-imforamtion-Parent{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+
+/* div */
+
+#Dialog{
+    height: 400px;
+    width: 500px;
+}
+
+h2{
+    text-align: center;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-size: 30px;
+}
+
+.Dialog-main{
+    display: flex;
+    justify-content: center;
+    margin-top: 100px;
+   
+}
+
+#csv-file{
+    margin-left: 100px;
+    
+}
+
+.Button-dialog-div{
+    margin-top: 150px;
+    display: flex;
+    justify-content: end;
+}
+
+#Button-Dialog-ok{
+    background-color: rgb(66, 66, 184);
+    color: white;
+    border: 0;
+    margin-right: 30px;
+    height: 40px;
+    width: 100px;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+#Button-Dialog-ok:hover{
+    background-color: blue;
+    cursor: pointer;
+}
+
+#Button-Dialog-ok:active{
+    opacity: 0.5;
+}
+
+#Button-Dialog-cancel{
+    color: black;
+    border: 2px solid black;
+    margin-right: 30px;
+    height: 40px;
+    width: 100px;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+#Button-Dialog-cancel:hover{
+    background-color: gray;
+    cursor: pointer;
+    color: aliceblue;
+}
+
+#Button-Dialog-cancel:active{
+        opacity: 0.5;
 }
