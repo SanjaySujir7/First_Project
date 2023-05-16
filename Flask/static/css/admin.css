@@ -139,7 +139,7 @@ h3{
 .Button-div{
     display: flex;
     justify-content: center ;
-    margin-top: 170px;
+    margin-top: 100px;
 }
 
 #Button{
@@ -324,4 +324,16 @@ h2{
 
 #Button-Dialog-cancel:active{
         opacity: 0.5;
+}
+
+.User-imformation-csv{
+    margin-top: 30px;
+    width: 95%;
+    height: 60px;
+    border: 3px solid black;
+    display: grid;
+    align-items: center;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr ;
+    margin-left: 30px;
+    
 }

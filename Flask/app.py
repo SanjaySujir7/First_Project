@@ -7,19 +7,59 @@ import csv
 app = Flask(__name__)
 
 
+@app.route('/return-csv-data',methods = ['POST'])
+def Return_Csv_Data ():
+    index = request.get_json()
+    
+    if int(index['return']):
+        conn = sqlite3.connect('user.db')
+        c = conn.cursor()
+
+        try:
+            c.execute("SELECT * FROM user_csv")
+        
+            user_data = c.fetchall()
+            
+            if not user_data:
+            
+                return jsonify({"exist" : False})
+            
+        except:
+            
+            return jsonify({"exist" : False})
+        
+        c.close()
+    
+    num = int(index['return'])-1
+    
+    
+    data = {
+        'exist' : True,
+        'Name' : user_data[num][0],
+        'Last' : user_data[num][1],
+        'Email' : user_data[num][2],
+        'Lang' : user_data[num][3],
+        'Status' : user_data[num][4],
+        'Topic' : user_data[num][5],
+    }
+    
+    return jsonify(data)
+    
+
 @app.route('/import-csv',methods = ['POST'])
 def Import_Csv():
+
+    filename = request.files["csv_file"]
+    file_text = filename.read().decode('utf-8')
     
-    filename = request.form("csv_file")
-    print(filename)
+    Reader = csv.DictReader(file_text.splitlines())
     
-    data = None
-    
-    with open('user.csv','r') as file :
-        read = csv.DictReader(file)
+    data = []
+
+    for each_user in Reader:
+        data.append(each_user)
         
-        for each_user in read:
-            data.append(each_user)
+
             
     conn = sqlite3.connect("user.db")
     c = conn.cursor()  
@@ -28,26 +68,28 @@ def Import_Csv():
         Name = user['Name'].lower()
         Last = user['Last']
         Email = user['Email']
-        Password = user['Password']
         Lang = user['Lang']
         Status = user['Status']
         Topic = user['Topic']
-        Type = user['Type']
         
-        c.execute("SELECT * FROM user_info WHERE Name = ? AND Password = ?",(Name,Password))
+        c.execute("CREATE TABLE IF NOT EXISTS user_csv (Name , Last,Email,Lang,Status,Topic)")
+        
+        c.execute("SELECT * FROM user_csv WHERE Name = ? AND Email = ?",(Name,Email,))
         fetch_data = c.fetchall()
         
         if fetch_data :
             pass
         
         else:
-            c.execute("INSERT INTO user_info (Name , Last_name , Email , Password , Language , Status , Radio, Type) VALUES (?,?,?,?,?,?,?,?)",
-                      (Name,Last,Email,Password,Lang,Status,Topic,Type,))
+            
+            c.execute("INSERT INTO user_csv(Name ,Last,Email,Lang,Status,Topic) VALUES (?,?,?,?,?,?)",
+                      (Name,Last,Email,Lang,Status,Topic))
             
             conn.commit()
             
     conn.close()
     
+    print(data)
     return redirect('/admin')
         
 
@@ -100,13 +142,21 @@ def Admin_Page ():
         
         c = conn.cursor()
         
+        
+        try:
+            c.execute("SELECT * FROM user_csv")
+            csv_data = c.fetchall()
+            csv_data = len(csv_data)
+        except:
+            csv_data = 0
+        
         c.execute("SELECT * FROM user_info")
         data = c.fetchall()
         
         data = len(data)-1
 
-    
-        return render_template ('admin.html',Name = Name,Last = Last,Email = Email,data = data)
+        c.close()
+        return render_template ('admin.html',Name = Name,Last = Last,Email = Email,data = data,csv_data = csv_data)
     
     except:
         return redirect('/login')

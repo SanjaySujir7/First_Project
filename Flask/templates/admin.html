@@ -54,6 +54,9 @@
             <div class="total-number">
             <p style="text-align: center; margin-left :20px; font-size:25px;">Total Number of Users : {{data}}</p> 
             </div>
+            <div class="total-number">
+                <p style="text-align: center; margin-left :20px; font-size:25px;">Total Number of csv data  : {{csv_data}}</p> 
+            </div>
             <div class="Button-div">  
                 <button id="Button">
                     Import Csv 
@@ -73,12 +76,24 @@
             </div>
         </div>
     </section>
+    <section class="User-Db-sec">
+        <div class="User-Db"> 
+            <div>
+               <h6>
+                 Csv Data
+               </h6> 
+            </div>
+            <div id="User-imforamtion-csv-parent">    
+                
+            </div>
+        </div>
+    </section>
     <dialog id="Dialog">
         <div class="Dialog-main-div">
             <div>
                 <h2>Import External File</h2>
             </div>
-            <form class="Dialog-main" action="/import-csv" method="post" id="Dialog-Form">
+            <form class="Dialog-main" action="/import-csv" method="post" id="Dialog-Form" enctype="multipart/form-data">
                 <input type="file" name="csv_file" id="csv-file">
             </form>
             <div class="Button-dialog-div">
@@ -93,6 +108,7 @@
     </dialog>
     <script>
         Total = {{data}}
+        Total_Csv = {{csv_data}}
     </script>
     <script src={{url_for('static',filename='/js/admin.js')}}></script>
 </body>
